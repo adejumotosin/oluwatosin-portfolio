@@ -4,7 +4,7 @@ Standalone portfolio for **Oluwatosin Adejumo**, Social Media Manager & Content 
 
 ## Included
 
-- Native React interface and case-study components.
+- React interface and interactive case-study components.
 - GSAP + ScrollTrigger for hero motion, scroll reveals, animated statistics and process storytelling.
 - React Bits-inspired micro-interactions: magnetic CTAs, spotlight cards and animated counters.
 - Structured case studies for CongaTV, Career Gospel and Lagos4Rent.
@@ -16,14 +16,13 @@ Standalone portfolio for **Oluwatosin Adejumo**, Social Media Manager & Content 
 The portfolio is standalone and no longer proxies the previous ChatGPT Site.
 
 - `index.html` — production entry point.
-- `src/main.jsx` — editable React application source.
-- `src/styles.css` — editable source styles.
-- `app.js` — browser-compatible application bundle used by the standalone source package.
-- `styles.css` — current compiled stylesheet.
-- `reference/` — case-study reference screenshots.
-- `vercel.json` — Vercel SPA routing configuration.
+- `styles.css` — portfolio styles.
+- `app.js` — small runtime loader.
+- `runtime/app-01.txt` … `runtime/app-07.txt` — the browser application source, loaded in order by `app.js`.
+- `vercel.json` — SPA rewrite for `/social-audit`.
+- `package.json` — project metadata.
 
-The production entry point loads React/ReactDOM from UNPKG and GSAP/ScrollTrigger from jsDelivr, then initializes the application in the browser. This keeps the current production deployment independent of a server-side build step.
+The entry point loads React/ReactDOM from UNPKG and GSAP/ScrollTrigger from jsDelivr, then loads the portfolio application from the local runtime files. There is no dependency on the previous ChatGPT Site or a server-side proxy.
 
 ## Routes
 
@@ -32,8 +31,10 @@ The production entry point loads React/ReactDOM from UNPKG and GSAP/ScrollTrigge
 
 ## Deployment
 
-The live project is deployed on Vercel as `oluwatosin-portfolio`. `vercel.json` rewrites application routes to `index.html` so client-side routes work correctly.
+The existing live Vercel project is `oluwatosin-portfolio`. The repository is ready to be linked to that project for Git-based deployments.
 
-## Next deployment workflow
+`vercel.json` preserves static assets normally and rewrites only `/social-audit` to `index.html`.
 
-This repository is the source of truth for future portfolio changes. Once it is linked to the existing Vercel project, updates to the production branch can deploy through the normal GitHub → Vercel workflow.
+## Git workflow
+
+`main` is intended to be the production branch. Once Git integration is enabled in the existing Vercel project, pushes to `main` can become production deployments while other branches can generate previews.
