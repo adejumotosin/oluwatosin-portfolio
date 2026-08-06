@@ -1,0 +1,36 @@
+/* V5 stability fix: capabilities must never depend on scroll animation */
+body:not(:has(.audit-page)) #services,
+body:not(:has(.audit-page)) #services .section-heading,
+body:not(:has(.audit-page)) #services .cap-grid,
+body:not(:has(.audit-page)) #services .cap-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body:not(:has(.audit-page)) #services .cap-card {
+  display: block !important;
+  translate: none !important;
+}
+
+body:not(:has(.audit-page)) #services .cap-grid {
+  position: relative;
+  z-index: 2;
+}
+
+/* Preserve the bento layout while guaranteeing sensible fallbacks. */
+@media (max-width: 900px) {
+  body:not(:has(.audit-page)) #services .cap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  body:not(:has(.audit-page)) #services .cap-card,
+  body:not(:has(.audit-page)) #services .cap-card:nth-child(1),
+  body:not(:has(.audit-page)) #services .cap-card:nth-child(5) {
+    grid-column: auto !important;
+  }
+}
+
+@media (max-width: 680px) {
+  body:not(:has(.audit-page)) #services .cap-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
