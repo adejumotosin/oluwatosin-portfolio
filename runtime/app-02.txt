@@ -1,0 +1,98 @@
+e first month.'],
+            ['Experiments', 'Tested location hooks, property presentation, video pacing and posting cadence to identify what accelerated follower response.'],
+            ['Results', 'Grew the account to more than 1,200 followers in one month through organic publishing.'],
+            ['Commercial impact', 'Created a low-cost owned audience and repeatable distribution channel for rental inventory, improving lead-generation potential without paid media.'],
+            ['Lessons', 'A narrow niche and strong location relevance can accelerate early discovery; clear utility beats broad lifestyle content at the account-building stage.']
+        ]
+    }
+];
+const capabilities = [
+    ['01', 'Audience & brand research', 'Personas, competitor analysis, positioning, messaging gaps and content opportunities.'],
+    ['02', 'Content strategy', 'Content pillars, editorial calendars, campaigns, launch strategy and platform planning.'],
+    ['03', 'Social media management', 'Publishing, community management, collaboration and day-to-day account operations.'],
+    ['04', 'Creative direction', 'Copywriting, briefs, visual direction, graphic design and short-form video.'],
+    ['05', 'Growth & campaigns', 'Organic growth, campaign execution, creator collaboration and paid-social support.'],
+    ['06', 'Performance analytics', 'KPI tracking, reporting, experimentation and optimisation.']
+];
+const process = [
+    ['01', 'Research', 'Audience, competition, context'],
+    ['02', 'Strategy', 'Positioning, pillars, plan'],
+    ['03', 'Execution', 'Copy, creative, publishing'],
+    ['04', 'Optimisation', 'Measure, test, refine']
+];
+function MagneticLink({ href, children, className = '', external = false }) {
+    const ref = useRef(null);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el || matchMedia('(pointer: coarse)').matches)
+            return;
+        const move = e => {
+            const r = el.getBoundingClientRect();
+            const x = (e.clientX - (r.left + r.width / 2)) * .16;
+            const y = (e.clientY - (r.top + r.height / 2)) * .16;
+            gsap.to(el, { x, y, duration: .25, ease: 'power2.out' });
+        };
+        const leave = () => gsap.to(el, { x: 0, y: 0, duration: .45, ease: 'elastic.out(1,.4)' });
+        el.addEventListener('mousemove', move);
+        el.addEventListener('mouseleave', leave);
+        return () => { el.removeEventListener('mousemove', move); el.removeEventListener('mouseleave', leave); };
+    }, []);
+    return React.createElement("a", { ref: ref, className: `magnetic ${className}`, href: href, ...(external ? { target: '_blank', rel: 'noreferrer' } : {}) }, children);
+}
+function SpotlightCard({ children, className = '' }) {
+    const ref = useRef(null);
+    const onMove = e => {
+        const el = ref.current;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    };
+    return React.createElement("div", { ref: ref, onMouseMove: onMove, className: `spotlight-card ${className}` }, children);
+}
+function CountUp({ value, suffix = '' }) {
+    const ref = useRef(null);
+    useEffect(() => {
+        const el = ref.current;
+        const numeric = Number(String(value).replace(/[^0-9.]/g, ''));
+        if (!Number.isFinite(numeric)) {
+            el.textContent = value;
+            return;
+        }
+        const obj = { n: 0 };
+        const tween = gsap.to(obj, {
+            n: numeric, duration: 1.35, ease: 'power2.out', paused: true,
+            onUpdate: () => {
+                const formatted = Number.isInteger(numeric) ? Math.round(obj.n).toLocaleString() : obj.n.toFixed(1);
+                el.textContent = `${formatted}${suffix}`;
+            }
+        });
+        const st = ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => tween.play() });
+        return () => { tween.kill(); st.kill(); };
+    }, [value, suffix]);
+    return React.createElement("span", { ref: ref }, "0");
+}
+function Navigation() {
+    const [open, setOpen] = useState(false);
+    return React.createElement("nav", { className: "nav" },
+        React.createElement("a", { href: "#top", className: "wordmark" },
+            "OA",
+            React.createElement("span", null, ".")),
+        React.createElement("button", { className: "menu", onClick: () => setOpen(!open), "aria-label": "Toggle menu" },
+            React.createElement("span", null),
+            React.createElement("span", null)),
+        React.createElement("div", { className: `navlinks ${open ? 'open' : ''}`, onClick: () => setOpen(false) },
+            React.createElement("a", { href: "#work" }, "Work"),
+            React.createElement("a", { href: "#approach" }, "Approach"),
+            React.createElement("a", { href: "#services" }, "Capabilities"),
+            React.createElement("a", { href: "#about" }, "About"),
+            React.createElement("a", { href: "/social-audit", className: "nav-audit" }, "Free audit"),
+            React.createElement("a", { href: "#contact", className: "nav-cta" }, "Start a project")));
+}
+function Hero() {
+    const ref = useRef(null);
+    useGSAP(() => {
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce)
+            return;
+        gsap.from('.hero-kicker', { opacity: 0, y: 14, duration: .7 });
+        gsap.from('.hero-title .line', { yPercent: 110, opacity: 0, duration: 1.05
