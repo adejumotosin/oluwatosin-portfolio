@@ -1,0 +1,73 @@
+const React = window.React;
+const { useEffect, useLayoutEffect, useRef, useState } = React;
+const { createRoot } = window.ReactDOM;
+const gsap = window.gsap;
+const ScrollTrigger = window.ScrollTrigger;
+gsap.registerPlugin(ScrollTrigger);
+function useGSAP(callback, { scope } = {}) {
+    useLayoutEffect(() => {
+        const ctx = gsap.context(callback, scope?.current || scope);
+        return () => ctx.revert();
+    }, []);
+}
+const studies = [
+    {
+        number: '01',
+        sector: 'Entertainment · YouTube',
+        title: 'CongaTV',
+        statement: 'Built an owned Nollywood video channel from zero to 49,215 views in six months.',
+        timeframe: '6 months',
+        image: null,
+        metrics: [['49,215', 'views'], ['319', 'subscribers'], ['422', 'videos']],
+        links: [
+            ['Watch highest-viewed video', 'https://youtu.be/zfJG5On63zw?si=ugJJ2DZSeWRIjEXt'],
+            ['Visit channel', 'https://www.youtube.com/@OluwatosinAdejumo-g7n']
+        ],
+        stages: [
+            ['Business problem', 'CongaTV needed an owned YouTube presence that could convert its Nollywood content library into repeatable discovery and audience growth.'],
+            ['Baseline', 'No established subscriber base, repeatable publishing system or meaningful YouTube catalogue.'],
+            ['Audience insight', 'Nollywood viewers respond to recognisable moments, clear emotional stakes and packaging that explains the story before the click.'],
+            ['Strategy', 'Build a high-frequency searchable library with a clear Nollywood promise and a direct path from attention to CongaTV registration.'],
+            ['Execution', 'Set up the channel, created the publishing workflow and managed the content operation across 422 videos.'],
+            ['Experiments', 'Iterated clip selection, titles, packaging and publishing frequency around the videos generating the strongest response.'],
+            ['Results', 'Reached 319 subscribers and 49,215 total channel views within the six-month management period.'],
+            ['Commercial impact', 'Created a durable owned-distribution asset that extends the value of the content library and supports traffic to the platform.'],
+            ['Lessons', 'Publishing volume compounds only when the channel promise is clear and audience response continually shapes packaging.']
+        ]
+    },
+    {
+        number: '02',
+        sector: 'Faith & Work · Analytics',
+        title: 'Career Gospel',
+        statement: 'Turned social performance data into an interactive audit and prioritised growth roadmap.',
+        timeframe: 'Strategic audit',
+        image: null,
+        metrics: [['Live', 'audit'], ['6', 'score areas'], ['1', 'growth roadmap']],
+        links: [['Open live audit', 'https://careergospel-report-shsbfgxoeckkmlurecrw94.streamlit.app/']],
+        stages: [
+            ['Business problem', 'Career Gospel needed an evidence-led view of its social media performance so the team could identify what was working and what to prioritise next.'],
+            ['Baseline', 'There was no single diagnostic connecting positioning, content themes, audience response, consistency and conversion into one framework.'],
+            ['Audience insight', 'The audience responds most strongly when faith-and-work insight is translated into practical intelligence for careers, leadership and everyday decisions.'],
+            ['Strategy', 'Audit positioning, content architecture, format performance, engagement quality, consistency and the path from attention to meaningful action.'],
+            ['Execution', 'Built an interactive Streamlit report organising the analysis into scorecards, findings, recommendations and a usable growth roadmap.'],
+            ['Experiments', 'Compared content themes and formats, reviewed calls to action and mapped content activity back to strategic objectives.'],
+            ['Results', 'Delivered a reusable live audit that turns account evidence into a prioritised list of strategic actions.'],
+            ['Commercial impact', 'Reduced guesswork in planning and gave the team a clearer basis for allocating creative effort and campaign resources.'],
+            ['Lessons', 'Analytics becomes useful only when it ends in decisions: what to continue, stop, test and measure next.']
+        ]
+    },
+    {
+        number: '03',
+        sector: 'Property · TikTok',
+        title: 'Lagos4Rent',
+        statement: 'Built a new property TikTok account to 1.2K+ followers organically in one month.',
+        timeframe: '1 month',
+        image: null,
+        metrics: [['1.2K+', 'followers'], ['1', 'month'], ['100%', 'organic']],
+        links: [['View TikTok', 'https://vm.tiktok.com/ZS9rwJQjSAbYU-KhvNy/']],
+        stages: [
+            ['Business problem', 'A new Lagos rental brand needed awareness and a relevant audience on TikTok without paid acquisition.'],
+            ['Baseline', 'The account started without an established following, proven content format or existing TikTok distribution engine.'],
+            ['Audience insight', 'Lagos renters want fast, visual and location-specific property discovery with enough clarity to decide whether a listing deserves attention.'],
+            ['Strategy', 'Position the page around affordable Lagos rentals and use mobile-first listing content designed for local discovery and repeat viewing.'],
+            ['Execution', 'Set up the profile, established the content direction and managed the organic publishing system for th
