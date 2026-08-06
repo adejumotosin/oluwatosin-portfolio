@@ -1,0 +1,80 @@
+ame: "case-metrics" }, study.metrics.map(([v, l]) => React.createElement("div", { key: l },
+                    React.createElement("strong", null, v),
+                    React.createElement("span", null, l)))),
+                React.createElement("div", { className: "stage-grid" }, study.stages.map(([label, text]) => React.createElement("div", { className: "stage", key: label },
+                    React.createElement("span", null, label),
+                    React.createElement("p", null, text)))),
+                React.createElement("div", { className: "case-links" }, study.links.map(([label, url], i) => React.createElement(MagneticLink, { key: label, href: url, external: true, className: i ? 'button ghost' : 'button dark' },
+                    label,
+                    " \u2197"))))));
+}
+function SelectedWork() {
+    const ref = useRef(null);
+    useGSAP(() => {
+        gsap.from('.case-card', { opacity: 0, y: 60, stagger: .12, duration: .85, ease: 'power3.out', scrollTrigger: { trigger: ref.current, start: 'top 75%' } });
+    }, { scope: ref });
+    return React.createElement("section", { id: "work", className: "section shell", ref: ref },
+        React.createElement("div", { className: "section-heading" },
+            React.createElement("div", null,
+                React.createElement("p", { className: "eyebrow" },
+                    React.createElement("span", null),
+                    " Selected work"),
+                React.createElement("h2", null,
+                    "Case studies, not ",
+                    React.createElement("em", null, "task lists."))),
+            React.createElement("p", null, "Each project is presented as a complete strategic chain\u2014from business problem and audience insight through execution, results, commercial impact and lessons.")),
+        React.createElement("div", { className: "case-list" }, studies.map((s, i) => React.createElement(CaseStudy, { key: s.title, study: s, index: i }))));
+}
+function Approach() {
+    const ref = useRef(null);
+    useGSAP(() => {
+        const cards = gsap.utils.toArray('.process-step');
+        cards.forEach((card, i) => {
+            ScrollTrigger.create({ trigger: card, start: 'top 65%', end: 'bottom 45%', onEnter: () => card.classList.add('active'), onEnterBack: () => card.classList.add('active'), onLeave: () => card.classList.remove('active'), onLeaveBack: () => card.classList.remove('active') });
+        });
+        gsap.from('.approach-copy', { opacity: 0, y: 40, duration: .8, scrollTrigger: { trigger: ref.current, start: 'top 70%' } });
+    }, { scope: ref });
+    return React.createElement("section", { id: "approach", className: "approach", ref: ref },
+        React.createElement("div", { className: "shell approach-grid" },
+            React.createElement("div", { className: "approach-copy" },
+                React.createElement("p", { className: "eyebrow" },
+                    React.createElement("span", null),
+                    " How I think"),
+                React.createElement("h2", null,
+                    "I don\u2019t begin with content. ",
+                    React.createElement("em", null, "I begin with questions.")),
+                React.createElement("p", null, "Once the right answers are clear, content becomes easier to create\u2014and far more effective.")),
+            React.createElement("div", { className: "process-list" }, process.map(([n, t, p]) => React.createElement("div", { className: "process-step", key: n },
+                React.createElement("span", null, n),
+                React.createElement("div", null,
+                    React.createElement("h3", null, t),
+                    React.createElement("p", null, p)))))));
+}
+function Capabilities() {
+    const ref = useRef(null);
+    useGSAP(() => {
+        gsap.from('.cap-card', { opacity: 0, y: 38, stagger: .08, duration: .7, ease: 'power3.out', scrollTrigger: { trigger: ref.current, start: 'top 74%' } });
+    }, { scope: ref });
+    return React.createElement("section", { id: "services", className: "section shell", ref: ref },
+        React.createElement("div", { className: "section-heading" },
+            React.createElement("div", null,
+                React.createElement("p", { className: "eyebrow" },
+                    React.createElement("span", null),
+                    " Capabilities"),
+                React.createElement("h2", null,
+                    "Thinking and execution, ",
+                    React.createElement("em", null, "held together."))),
+            React.createElement("p", null, "A content system should connect research, creative judgement, daily operations and measurable business goals.")),
+        React.createElement("div", { className: "cap-grid" }, capabilities.map(([n, t, p]) => React.createElement(SpotlightCard, { className: "cap-card", key: n },
+            React.createElement("span", null, n),
+            React.createElement("h3", null, t),
+            React.createElement("p", null, p)))));
+}
+function AuditPromo() {
+    return React.createElement("section", { className: "audit-promo shell" },
+        React.createElement(SpotlightCard, { className: "audit-panel" },
+            React.createElement("div", null,
+                React.createElement("p", { className: "eyebrow light" },
+                    React.createElement("span", null),
+                    " Interactive strategy tool"),
+                React.createElement("h2", null, "Find the growth constraint hiding in your social media account."
