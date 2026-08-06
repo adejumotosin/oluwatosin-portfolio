@@ -1,0 +1,219 @@
+/* V3 corrective layer: readability, guaranteed case-study visibility, restored portraits */
+
+/* 1) Impact card: keep it crisp and spacious. */
+body:not(:has(.audit-page)) .hero-proof{
+  transform:none !important;
+  opacity:1 !important;
+  filter:none !important;
+  padding:30px 32px;
+  border-radius:24px;
+  background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.045));
+  box-shadow:0 28px 80px rgba(0,0,0,.34);
+  backdrop-filter:blur(14px);
+}
+body:not(:has(.audit-page)) .hero-proof:hover{transform:translateY(-4px) !important}
+body:not(:has(.audit-page)) .hero-proof::after{display:none !important}
+body:not(:has(.audit-page)) .proof-label{margin-bottom:18px}
+body:not(:has(.audit-page)) .proof-stat{
+  display:grid;
+  grid-template-columns:minmax(110px,.7fr) minmax(150px,1fr);
+  gap:28px;
+  align-items:center;
+  min-height:112px;
+  padding:22px 0;
+}
+body:not(:has(.audit-page)) .proof-stat strong{
+  display:block;
+  font-size:clamp(42px,4vw,62px);
+  line-height:1;
+  letter-spacing:-.065em;
+  white-space:nowrap;
+}
+body:not(:has(.audit-page)) .proof-stat strong > span{display:block}
+body:not(:has(.audit-page)) .proof-stat > span{
+  display:block;
+  max-width:none;
+  text-align:left;
+  font-size:14px;
+  line-height:1.35;
+  color:#d0d0d0;
+}
+body:not(:has(.audit-page)) .proof-foot{
+  margin-top:18px;
+  padding-top:4px;
+  font-size:12px;
+  line-height:1.5;
+}
+
+/* 2) Hero portrait and impact card are a clean side column. */
+body:not(:has(.audit-page)) .v3-hero-side{
+  display:grid;
+  gap:22px;
+  align-self:center;
+  min-width:0;
+}
+body:not(:has(.audit-page)) .v3-hero-portrait{
+  margin:0;
+  position:relative;
+  min-height:410px;
+  overflow:hidden;
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.15);
+  background:#171717;
+  box-shadow:0 32px 100px rgba(0,0,0,.38);
+}
+body:not(:has(.audit-page)) .v3-hero-portrait::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.78),transparent 46%);
+  pointer-events:none;
+}
+body:not(:has(.audit-page)) .v3-hero-portrait img{
+  width:100%;
+  height:100%;
+  min-height:410px;
+  object-fit:cover;
+  object-position:center 22%;
+  display:block;
+  filter:saturate(.92) contrast(1.02);
+}
+body:not(:has(.audit-page)) .v3-hero-portrait figcaption{
+  position:absolute;
+  left:24px;
+  right:24px;
+  bottom:22px;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:16px;
+  color:white;
+}
+body:not(:has(.audit-page)) .v3-hero-portrait figcaption span{
+  font-size:10px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:var(--v2-acid);
+  font-weight:900;
+}
+body:not(:has(.audit-page)) .v3-hero-portrait figcaption strong{
+  font-size:16px;
+  text-align:right;
+}
+
+/* 3) Case studies must always remain visible. */
+body:not(:has(.audit-page)) #work,
+body:not(:has(.audit-page)) #work .section-heading,
+body:not(:has(.audit-page)) #work .case-list,
+body:not(:has(.audit-page)) #work .case-card{
+  opacity:1 !important;
+  visibility:visible !important;
+}
+body:not(:has(.audit-page)) #work .case-card{
+  display:block !important;
+}
+body:not(:has(.audit-page)) #work .case-summary{
+  opacity:1 !important;
+  visibility:visible !important;
+}
+body:not(:has(.audit-page)) #work .case-list{position:relative;z-index:2}
+
+/* Make the posters slightly less oversized so all three read as case studies. */
+body:not(:has(.audit-page)) .case-summary{
+  min-height:330px;
+  padding:42px 46px;
+  grid-template-columns:84px 1fr 190px;
+}
+body:not(:has(.audit-page)) .case-number{font-size:48px}
+body:not(:has(.audit-page)) .case-summary h3{font-size:clamp(52px,6vw,92px)}
+body:not(:has(.audit-page)) .case-summary p{font-size:17px}
+body:not(:has(.audit-page)) .case-result strong{font-size:clamp(42px,4.5vw,66px)}
+
+/* 4) Restore the original About portrait. */
+body:not(:has(.audit-page)) .v3-about-portrait{
+  margin:38px 0 0;
+  overflow:hidden;
+  border-radius:28px;
+  min-height:460px;
+  background:#191919;
+  box-shadow:0 28px 70px rgba(0,0,0,.12);
+}
+body:not(:has(.audit-page)) .v3-about-portrait img{
+  width:100%;
+  height:100%;
+  min-height:460px;
+  display:block;
+  object-fit:cover;
+  object-position:center 28%;
+}
+body:not(:has(.audit-page)) .v3-about-portrait figcaption{
+  padding:14px 4px 0;
+  font-size:11px;
+  color:#747474;
+  letter-spacing:.08em;
+}
+
+/* 5) Restore the original standing portrait as a full-width editorial interlude. */
+body:not(:has(.audit-page)) .v3-portrait-interlude{
+  width:min(1180px,calc(100% - 40px));
+  margin:20px auto 130px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  min-height:620px;
+  overflow:hidden;
+  border-radius:34px;
+  background:#0b0b0b;
+  color:white;
+  box-shadow:0 40px 110px rgba(0,0,0,.16);
+}
+body:not(:has(.audit-page)) .v3-portrait-interlude figure{margin:0;min-height:620px;overflow:hidden}
+body:not(:has(.audit-page)) .v3-portrait-interlude img{
+  width:100%;height:100%;min-height:620px;object-fit:cover;object-position:center 18%;display:block;
+}
+body:not(:has(.audit-page)) .v3-portrait-copy{
+  padding:62px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:radial-gradient(circle at 100% 0,rgba(118,87,255,.35),transparent 38%),#0b0b0b;
+}
+body:not(:has(.audit-page)) .v3-portrait-copy .eyebrow{color:var(--v2-acid)}
+body:not(:has(.audit-page)) .v3-portrait-copy blockquote{
+  margin:28px 0 0;
+  font-family:Georgia,serif;
+  font-size:clamp(34px,4vw,60px);
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
+
+@media(max-width:900px){
+  body:not(:has(.audit-page)) .v3-hero-side{max-width:680px}
+  body:not(:has(.audit-page)) .v3-hero-portrait{min-height:520px}
+  body:not(:has(.audit-page)) .v3-hero-portrait img{min-height:520px}
+  body:not(:has(.audit-page)) .case-summary{grid-template-columns:64px 1fr;min-height:300px}
+  body:not(:has(.audit-page)) .case-result{grid-column:2}
+  body:not(:has(.audit-page)) .v3-portrait-interlude{grid-template-columns:1fr;min-height:0}
+  body:not(:has(.audit-page)) .v3-portrait-interlude figure,
+  body:not(:has(.audit-page)) .v3-portrait-interlude img{min-height:560px}
+}
+
+@media(max-width:680px){
+  body:not(:has(.audit-page)) .proof-stat{
+    grid-template-columns:1fr;
+    gap:8px;
+    min-height:0;
+    padding:20px 0;
+  }
+  body:not(:has(.audit-page)) .proof-stat > span{text-align:left}
+  body:not(:has(.audit-page)) .v3-hero-portrait,
+  body:not(:has(.audit-page)) .v3-hero-portrait img{min-height:430px}
+  body:not(:has(.audit-page)) .case-summary{grid-template-columns:1fr;min-height:360px;padding:26px}
+  body:not(:has(.audit-page)) .case-result{grid-column:1}
+  body:not(:has(.audit-page)) .v3-about-portrait,
+  body:not(:has(.audit-page)) .v3-about-portrait img{min-height:390px}
+  body:not(:has(.audit-page)) .v3-portrait-interlude{width:calc(100% - 28px);margin-bottom:90px}
+  body:not(:has(.audit-page)) .v3-portrait-interlude figure,
+  body:not(:has(.audit-page)) .v3-portrait-interlude img{min-height:430px}
+  body:not(:has(.audit-page)) .v3-portrait-copy{padding:34px 26px}
+}
