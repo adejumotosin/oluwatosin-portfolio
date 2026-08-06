@@ -1,0 +1,69 @@
+nction Portfolio() {
+    useEffect(() => {
+        const progress = document.querySelector('.scroll-progress');
+        const handler = () => { const max = document.documentElement.scrollHeight - innerHeight; progress.style.width = `${max ? scrollY / max * 100 : 0}%`; };
+        addEventListener('scroll', handler, { passive: true });
+        handler();
+        return () => removeEventListener('scroll', handler);
+    }, []);
+    return React.createElement(React.Fragment, null,
+        React.createElement("div", { className: "scroll-progress" }),
+        React.createElement(Navigation, null),
+        React.createElement(Hero, null),
+        React.createElement(ImpactStrip, null),
+        React.createElement(SelectedWork, null),
+        React.createElement(Approach, null),
+        React.createElement(Capabilities, null),
+        React.createElement(AuditPromo, null),
+        React.createElement(Toolkit, null),
+        React.createElement(About, null),
+        React.createElement(Contact, null),
+        React.createElement("footer", { className: "footer shell" },
+            React.createElement("a", { href: "#top", className: "wordmark" },
+                "OA",
+                React.createElement("span", null, ".")),
+            React.createElement("p", null, "\u00A9 2026 Oluwatosin Adejumo. Built in Lagos."),
+            React.createElement("a", { href: "#top" }, "Back to top \u2191")));
+}
+function SocialAudit() {
+    const [result, setResult] = useState(null);
+    const [answers, setAnswers] = useState({});
+    const qs = [['profile', 'Your bio clearly states who the account serves and what it offers.'], ['content', 'Your content follows clear, repeatable pillars.'], ['visual', 'Your posts are easy to recognise and read on mobile.'], ['engagement', 'Your content regularly earns meaningful comments, saves or shares.'], ['consistency', 'You follow a sustainable publishing schedule.'], ['conversion', 'Your profile and posts provide a clear next action.']];
+    const submit = e => {
+        e.preventDefault();
+        const fd = Object.fromEntries(new FormData(e.currentTarget).entries());
+        const scores = {};
+        qs.forEach(([k]) => scores[k] = Number(fd[k]) * 100);
+        const cadence = Math.min(100, Number(fd.posts) * 8), er = Math.min(100, (Number(fd.interactions) / Math.max(1, Number(fd.followers))) * 2000);
+        scores.consistency = Math.round((scores.consistency + cadence) / 2);
+        scores.engagement = Math.round((scores.engagement + er) / 2);
+        const weights = { awareness: [.2, .22, .18, .2, .14, .06], authority: [.24, .25, .12, .15, .12, .12], community: [.15, .2, .1, .3, .15, .1], leads: [.2, .2, .1, .13, .1, .27], sales: [.18, .18, .12, .12, .1, .3] }[fd.goal];
+        const keys = Object.keys(scores), total = Math.round(keys.reduce((a, k, i) => a + scores[k] * weights[i], 0)), weak = [...keys].sort((a, b) => scores[a] - scores[b])[0];
+        const tips = { profile: ['Rewrite the bio around one audience and one outcome.', 'Add a direct profile call to action.', 'Pin proof or a strong introduction.'], content: ['Define three content pillars.', 'Create one recurring series.', 'Assign each post a strategic purpose.'], visual: ['Use clearer hooks and covers.', 'Reduce text density on mobile.', 'Standardise recognisable design elements.'], engagement: ['Publish more useful frameworks and examples.', 'Ask specific response-led questions.', 'Turn audience comments into new posts.'], consistency: ['Choose a realistic weekly cadence.', 'Batch content in advance.', 'Track posts shipped every week.'], conversion: ['Make one offer or action dominant.', 'Connect every call to action to the post topic.', 'Place proof close to the decision point.'] };
+        setResult({ total, scores, weak, tips: tips[weak], handle: fd.handle });
+    };
+    return React.createElement("main", { className: "audit-page" },
+        React.createElement("div", { className: "audit-nav shell" },
+            React.createElement("a", { href: "/", className: "wordmark" },
+                "OA",
+                React.createElement("span", null, ".")),
+            React.createElement("a", { href: "/" }, "Back to portfolio \u2197")),
+        React.createElement("section", { className: "audit-hero shell" },
+            React.createElement("p", { className: "eyebrow light" },
+                React.createElement("span", null),
+                " Free interactive mini audit"),
+            React.createElement("h1", null, "Find what is limiting your social media growth."),
+            React.createElement("p", null, "Score six strategic dimensions in a few minutes. No password required.")),
+        !result ? React.createElement("section", { className: "audit-form-card shell" },
+            React.createElement("form", { onSubmit: submit },
+                React.createElement("div", { className: "audit-grid" },
+                    React.createElement("label", null,
+                        "Platform",
+                        React.createElement("select", { name: "platform", required: true },
+                            React.createElement("option", { value: "" }, "Select"),
+                            React.createElement("option", null, "Instagram"),
+                            React.createElement("option", null, "LinkedIn"),
+                            React.createElement("option", null, "TikTok"))),
+                    React.createElement("label", null,
+                        "Primary goal",
+                        React
