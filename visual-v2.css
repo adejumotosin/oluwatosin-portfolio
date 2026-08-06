@@ -1,0 +1,265 @@
+/* Visual V2 — bolder editorial direction */
+:root{
+  --v2-black:#090909;
+  --v2-ink:#111214;
+  --v2-paper:#f4f0e7;
+  --v2-white:#fffef9;
+  --v2-acid:#d7ff43;
+  --v2-violet:#7657ff;
+  --v2-coral:#ff725e;
+  --v2-line:rgba(9,9,9,.14);
+}
+
+body:not(:has(.audit-page)){
+  background:var(--v2-paper);
+  color:var(--v2-ink);
+  font-feature-settings:"ss01" 1,"ss02" 1;
+}
+
+body:not(:has(.audit-page))::selection{background:var(--v2-acid);color:#000}
+
+/* tactile cursor */
+.v2-cursor,.v2-cursor-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:99999;border-radius:50%;transform:translate(-50%,-50%);mix-blend-mode:difference;display:none}
+.v2-cursor{width:8px;height:8px;background:white}
+.v2-cursor-ring{width:42px;height:42px;border:1px solid rgba(255,255,255,.8);transition:width .2s,height .2s,border-color .2s,background .2s}
+body.v2-fine-pointer .v2-cursor,body.v2-fine-pointer .v2-cursor-ring{display:block}
+body.v2-link-hover .v2-cursor-ring{width:72px;height:72px;background:rgba(255,255,255,.13);border-color:white}
+
+/* nav becomes a floating control bar */
+body:not(:has(.audit-page)) .nav{
+  position:fixed;
+  top:18px;left:50%;transform:translateX(-50%);
+  width:min(1120px,calc(100% - 32px));
+  padding:11px 12px 11px 18px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  background:rgba(8,8,8,.78);
+  backdrop-filter:blur(22px) saturate(150%);
+  box-shadow:0 18px 60px rgba(0,0,0,.18);
+  color:white;
+}
+body:not(:has(.audit-page)) .wordmark{font-size:19px;letter-spacing:-.05em;color:white}
+body:not(:has(.audit-page)) .wordmark span{color:var(--v2-acid)}
+body:not(:has(.audit-page)) .navlinks{gap:8px}
+body:not(:has(.audit-page)) .navlinks a{padding:9px 13px;border-radius:999px;color:#e9e9e9;font-size:12px;transition:.25s}
+body:not(:has(.audit-page)) .navlinks a:hover{background:rgba(255,255,255,.09);color:white}
+body:not(:has(.audit-page)) .navlinks .nav-audit{color:var(--v2-acid)}
+body:not(:has(.audit-page)) .navlinks .nav-cta{background:var(--v2-acid);color:#090909;padding-inline:16px}
+
+/* hero — full cinematic black canvas */
+body:not(:has(.audit-page)) .hero{
+  min-height:100svh;
+  padding:150px 0 90px;
+  background:
+    radial-gradient(circle at 74% 18%,rgba(118,87,255,.33),transparent 29%),
+    radial-gradient(circle at 14% 72%,rgba(215,255,67,.13),transparent 28%),
+    var(--v2-black);
+  color:white;
+  isolation:isolate;
+  border-bottom:0;
+}
+body:not(:has(.audit-page)) .hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;opacity:.18;
+  background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+body:not(:has(.audit-page)) .hero::after{
+  content:"STRATEGY";position:absolute;right:-.04em;bottom:-.17em;z-index:-1;
+  font-size:clamp(150px,23vw,360px);font-weight:950;letter-spacing:-.1em;line-height:.75;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);white-space:nowrap;
+}
+body:not(:has(.audit-page)) .hero-grid{grid-template-columns:minmax(0,1.22fr) minmax(320px,.78fr);gap:68px}
+body:not(:has(.audit-page)) .hero .eyebrow{color:var(--v2-acid);font-size:11px;letter-spacing:.2em}
+body:not(:has(.audit-page)) .hero-title{
+  font-size:clamp(74px,9.4vw,150px);
+  line-height:.79;
+  letter-spacing:-.085em;
+  margin:28px 0 34px;
+  max-width:920px;
+}
+body:not(:has(.audit-page)) .hero-title .accent-line{color:var(--v2-acid);font-family:Georgia,serif;font-weight:400;text-shadow:0 0 50px rgba(215,255,67,.12)}
+body:not(:has(.audit-page)) .hero-lead{color:#c6c6c6;font-size:clamp(18px,1.5vw,22px);max-width:740px}
+body:not(:has(.audit-page)) .hero-actions{margin-top:38px}
+body:not(:has(.audit-page)) .hero .button.primary{background:var(--v2-acid);color:#080808;border-radius:0;min-height:58px;padding:0 25px;box-shadow:8px 8px 0 var(--v2-violet);transition:box-shadow .2s,transform .2s}
+body:not(:has(.audit-page)) .hero .button.primary:hover{box-shadow:3px 3px 0 var(--v2-violet);transform:translate(5px,5px)}
+body:not(:has(.audit-page)) .hero .text-link{color:white;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:5px}
+
+body:not(:has(.audit-page)) .hero-proof{
+  background:rgba(255,255,255,.065);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:28px;
+  padding:32px;
+  transform:rotate(2.5deg);
+  box-shadow:0 30px 100px rgba(0,0,0,.4);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),background .3s;
+}
+body:not(:has(.audit-page)) .hero-proof:hover{transform:rotate(0deg) translateY(-8px);background:rgba(255,255,255,.09)}
+body:not(:has(.audit-page)) .hero-proof:after{content:"PROOF > PROMISES";position:absolute;right:-20px;top:46%;transform:rotate(90deg);font-size:9px;letter-spacing:.24em;color:rgba(255,255,255,.35)}
+body:not(:has(.audit-page)) .proof-label{color:var(--v2-acid);letter-spacing:.22em}
+body:not(:has(.audit-page)) .proof-stat{border-color:rgba(255,255,255,.13);padding:20px 0}
+body:not(:has(.audit-page)) .proof-stat strong{font-size:clamp(48px,5vw,72px);color:white;line-height:.9}
+body:not(:has(.audit-page)) .proof-stat span{color:#bdbdbd;max-width:120px;text-align:right}
+body:not(:has(.audit-page)) .proof-foot{color:#878787}
+body:not(:has(.audit-page)) .hero-orb.one{width:520px;height:520px;background:radial-gradient(circle,rgba(118,87,255,.36),transparent 62%);filter:blur(20px)}
+body:not(:has(.audit-page)) .hero-orb.two{width:420px;height:420px;background:radial-gradient(circle,rgba(215,255,67,.18),transparent 65%);filter:blur(18px)}
+
+/* marquee becomes a loud visual divider */
+body:not(:has(.audit-page)) .impact-strip{background:var(--v2-acid);border:0;padding:18px 0;transform:rotate(-1deg) scale(1.02);position:relative;z-index:3}
+body:not(:has(.audit-page)) .impact-track{animation-duration:22s;gap:42px}
+body:not(:has(.audit-page)) .impact-track span{font-size:14px;letter-spacing:.12em;color:#070707}
+body:not(:has(.audit-page)) .impact-track b{color:var(--v2-violet);font-size:18px}
+
+/* shared headings */
+body:not(:has(.audit-page)) .section{padding:140px 0}
+body:not(:has(.audit-page)) .section-heading{align-items:start;margin-bottom:72px}
+body:not(:has(.audit-page)) .section-heading h2,
+body:not(:has(.audit-page)) .approach h2,
+body:not(:has(.audit-page)) .about h2,
+body:not(:has(.audit-page)) .contact h2{
+  font-size:clamp(60px,7vw,110px);line-height:.86;letter-spacing:-.075em
+}
+body:not(:has(.audit-page)) .section-heading h2 em,
+body:not(:has(.audit-page)) .approach h2 em,
+body:not(:has(.audit-page)) .about h2 em,
+body:not(:has(.audit-page)) .contact h2 em{color:var(--v2-violet)}
+
+/* selected work — poster-like, not résumé accordions */
+body:not(:has(.audit-page)) #work{background:var(--v2-paper);position:relative}
+body:not(:has(.audit-page)) #work::before{content:"SELECTED / WORK";position:absolute;top:34px;right:2vw;font-size:11px;font-weight:900;letter-spacing:.24em;color:#777}
+body:not(:has(.audit-page)) .case-list{gap:24px}
+body:not(:has(.audit-page)) .case-card{
+  border:0;border-radius:34px;overflow:hidden;box-shadow:0 35px 90px rgba(16,16,16,.08);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s
+}
+body:not(:has(.audit-page)) .case-card:hover{transform:translateY(-8px);box-shadow:0 48px 120px rgba(16,16,16,.15)}
+body:not(:has(.audit-page)) .case-card:nth-child(1){background:#0d0d0d;color:white}
+body:not(:has(.audit-page)) .case-card:nth-child(2){background:var(--v2-violet);color:white}
+body:not(:has(.audit-page)) .case-card:nth-child(3){background:var(--v2-acid);color:#080808}
+body:not(:has(.audit-page)) .case-summary{
+  min-height:390px;
+  padding:52px;
+  grid-template-columns:110px 1fr 210px;
+  align-items:end;
+  position:relative;
+}
+body:not(:has(.audit-page)) .case-number{align-self:start;font-size:60px;line-height:1;font-weight:950;letter-spacing:-.08em;color:currentColor;opacity:.2}
+body:not(:has(.audit-page)) .case-sector{color:currentColor;opacity:.58;letter-spacing:.19em}
+body:not(:has(.audit-page)) .case-summary h3{font-size:clamp(62px,7vw,112px);line-height:.82;letter-spacing:-.075em;margin:18px 0 24px;max-width:700px}
+body:not(:has(.audit-page)) .case-summary p{font-size:18px;line-height:1.6;max-width:690px;color:currentColor;opacity:.76}
+body:not(:has(.audit-page)) .case-result{align-self:end;text-align:left;border-left:1px solid currentColor;padding-left:26px;opacity:.95}
+body:not(:has(.audit-page)) .case-result strong{font-size:clamp(48px,5vw,76px);letter-spacing:-.07em;line-height:.9}
+body:not(:has(.audit-page)) .case-result small{display:block;margin-top:8px;color:currentColor;opacity:.65;text-transform:uppercase;letter-spacing:.14em}
+body:not(:has(.audit-page)) .case-result .plus{width:54px;height:54px;border-color:currentColor;margin-top:28px;font-size:25px}
+body:not(:has(.audit-page)) .case-inner{background:var(--v2-white);color:var(--v2-ink);padding:42px;border-radius:34px 34px 0 0}
+body:not(:has(.audit-page)) .case-metrics{gap:14px}
+body:not(:has(.audit-page)) .case-metrics div{padding:26px;border-radius:18px;background:#111;color:white}
+body:not(:has(.audit-page)) .case-metrics strong{font-size:44px;letter-spacing:-.06em}
+body:not(:has(.audit-page)) .stage-grid{gap:14px}
+body:not(:has(.audit-page)) .stage{padding:22px;border-radius:18px;background:#f7f3ea;border-color:rgba(0,0,0,.1);min-height:150px}
+body:not(:has(.audit-page)) .stage span{color:var(--v2-violet)}
+body:not(:has(.audit-page)) .case-links .button{border-radius:0}
+
+/* process — a presentation slide */
+body:not(:has(.audit-page)) .approach{
+  background:
+    radial-gradient(circle at 80% 0,rgba(118,87,255,.30),transparent 32%),
+    #080808;
+  color:white;
+  padding:150px 0;
+}
+body:not(:has(.audit-page)) .approach .eyebrow{color:var(--v2-acid)}
+body:not(:has(.audit-page)) .approach-copy p:last-child{font-size:20px;color:#a8a8a8}
+body:not(:has(.audit-page)) .process-step{padding:42px 0;border-color:rgba(255,255,255,.14);position:relative}
+body:not(:has(.audit-page)) .process-step::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:3px;background:var(--v2-acid);transition:width .5s}
+body:not(:has(.audit-page)) .process-step.active::after{width:100%}
+body:not(:has(.audit-page)) .process-step>span{color:var(--v2-acid);font-size:14px}
+body:not(:has(.audit-page)) .process-step h3{font-size:clamp(42px,4vw,64px)}
+body:not(:has(.audit-page)) .process-step.active{transform:translateX(18px)}
+
+/* capabilities — bento-ish */
+body:not(:has(.audit-page)) .cap-grid{grid-template-columns:repeat(12,1fr);gap:16px}
+body:not(:has(.audit-page)) .cap-card{grid-column:span 4;min-height:260px;padding:30px;border-radius:26px;background:white}
+body:not(:has(.audit-page)) .cap-card:nth-child(1),body:not(:has(.audit-page)) .cap-card:nth-child(5){grid-column:span 8}
+body:not(:has(.audit-page)) .cap-card:nth-child(2){background:var(--v2-acid)}
+body:not(:has(.audit-page)) .cap-card:nth-child(4){background:#111;color:white}
+body:not(:has(.audit-page)) .cap-card:nth-child(4) p{color:#bdbdbd}
+body:not(:has(.audit-page)) .cap-card h3{font-size:clamp(28px,3vw,44px);margin-top:54px}
+body:not(:has(.audit-page)) .cap-card:hover{transform:translateY(-10px) rotate(.4deg)}
+
+/* audit becomes a product launch block */
+body:not(:has(.audit-page)) .audit-promo{padding:30px 0 130px;background:var(--v2-paper)}
+body:not(:has(.audit-page)) .audit-panel{
+  background:var(--v2-acid);color:#090909;border:0;border-radius:34px;padding:60px;box-shadow:18px 18px 0 #111
+}
+body:not(:has(.audit-page)) .audit-panel .eyebrow{color:#111}
+body:not(:has(.audit-page)) .audit-panel h2{font-size:clamp(58px,6vw,90px);line-height:.88}
+body:not(:has(.audit-page)) .audit-panel p{color:#202020;font-size:18px}
+body:not(:has(.audit-page)) .audit-panel .light-button{background:#111;color:white;border-radius:0;box-shadow:7px 7px 0 var(--v2-violet)}
+body:not(:has(.audit-page)) .sample-score{border-color:rgba(0,0,0,.25)}
+body:not(:has(.audit-page)) .sample-score>span,body:not(:has(.audit-page)) .sample-score small,body:not(:has(.audit-page)) .sample-score p{color:#222}
+body:not(:has(.audit-page)) .sample-score>strong{font-size:96px;color:#111}
+body:not(:has(.audit-page)) .sample-score b{color:var(--v2-violet)}
+
+/* toolkit and about */
+body:not(:has(.audit-page)) .toolkit{background:#dcd4c7;padding:140px 0}
+body:not(:has(.audit-page)) .toolkit h2{font-size:clamp(56px,6vw,90px);line-height:.9}
+body:not(:has(.audit-page)) .system-card{background:#111;color:white;border:0;border-radius:30px;min-height:330px;padding:42px;box-shadow:14px 14px 0 var(--v2-acid)}
+body:not(:has(.audit-page)) .system-card>span{color:var(--v2-acid)}
+body:not(:has(.audit-page)) .system-card h3{font-size:50px;margin-top:50px}
+body:not(:has(.audit-page)) .about{padding-top:20px}
+body:not(:has(.audit-page)) .about .lead{font-size:clamp(30px,3.2vw,48px);line-height:1.25;letter-spacing:-.035em}
+body:not(:has(.audit-page)) .facts div{border-top:3px solid #111;padding-top:16px}
+
+/* closing statement */
+body:not(:has(.audit-page)) .contact{
+  position:relative;overflow:hidden;background:#0a0a0a;color:white;padding:155px 0;
+  background-image:radial-gradient(circle at 20% 0,rgba(118,87,255,.30),transparent 32%);
+}
+body:not(:has(.audit-page)) .contact::after{content:"LET'S BUILD";position:absolute;left:50%;bottom:-.19em;transform:translateX(-50%);font-size:clamp(120px,20vw,320px);font-weight:950;letter-spacing:-.09em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08)}
+body:not(:has(.audit-page)) .contact .eyebrow{color:var(--v2-acid)}
+body:not(:has(.audit-page)) .contact h2 em{color:var(--v2-acid)}
+body:not(:has(.audit-page)) .contact .button{background:var(--v2-acid);color:#080808;border-radius:0;box-shadow:8px 8px 0 var(--v2-violet)}
+body:not(:has(.audit-page)) .footer{background:#0a0a0a;color:#777;padding-left:max(20px,calc((100vw - 1180px)/2));padding-right:max(20px,calc((100vw - 1180px)/2));width:100%;max-width:none}
+
+/* richer hover light for spotlight cards */
+body:not(:has(.audit-page)) .spotlight-card:before{background:radial-gradient(480px circle at var(--mx,50%) var(--my,50%),rgba(215,255,67,.20),transparent 43%)}
+
+/* scroll reveal utility injected by v2 js */
+.v2-reveal{opacity:0;transform:translateY(42px)}
+.v2-scroll-label{position:fixed;right:19px;bottom:18px;z-index:2000;color:white;background:#0b0b0b;border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:9px 12px;font-size:9px;letter-spacing:.19em;font-weight:900;pointer-events:none;transition:opacity .3s}
+.v2-scroll-label.hidden{opacity:0}
+
+@media(max-width:900px){
+  body:not(:has(.audit-page)) .hero-grid{grid-template-columns:1fr;gap:42px}
+  body:not(:has(.audit-page)) .hero-proof{transform:none}
+  body:not(:has(.audit-page)) .case-summary{grid-template-columns:70px 1fr;min-height:320px;padding:34px}
+  body:not(:has(.audit-page)) .case-result{grid-column:2;border-left:0;border-top:1px solid currentColor;padding:20px 0 0;display:flex;align-items:end;gap:14px}
+  body:not(:has(.audit-page)) .case-result .plus{margin:0 0 0 auto}
+  body:not(:has(.audit-page)) .cap-card,body:not(:has(.audit-page)) .cap-card:nth-child(1),body:not(:has(.audit-page)) .cap-card:nth-child(5){grid-column:span 6}
+}
+
+@media(max-width:680px){
+  body:not(:has(.audit-page)) .nav{top:10px;width:calc(100% - 20px);border-radius:24px}
+  body:not(:has(.audit-page)) .menu span{background:white}
+  body:not(:has(.audit-page)) .navlinks{top:58px;background:#0d0d0d;border-color:#282828;color:white}
+  body:not(:has(.audit-page)) .hero{padding-top:130px;padding-bottom:70px}
+  body:not(:has(.audit-page)) .hero-title{font-size:clamp(58px,20vw,86px)}
+  body:not(:has(.audit-page)) .hero::after{font-size:42vw;bottom:-.08em}
+  body:not(:has(.audit-page)) .hero-proof{padding:24px}
+  body:not(:has(.audit-page)) .proof-stat strong{font-size:50px}
+  body:not(:has(.audit-page)) .section{padding:95px 0}
+  body:not(:has(.audit-page)) .section-heading h2,body:not(:has(.audit-page)) .approach h2,body:not(:has(.audit-page)) .about h2,body:not(:has(.audit-page)) .contact h2{font-size:58px}
+  body:not(:has(.audit-page)) .case-summary{grid-template-columns:1fr;min-height:420px;padding:28px;align-content:space-between}
+  body:not(:has(.audit-page)) .case-number{font-size:48px}
+  body:not(:has(.audit-page)) .case-summary h3{font-size:64px}
+  body:not(:has(.audit-page)) .case-result{grid-column:1}
+  body:not(:has(.audit-page)) .case-inner{padding:22px}
+  body:not(:has(.audit-page)) .case-metrics{grid-template-columns:1fr}
+  body:not(:has(.audit-page)) .stage-grid{grid-template-columns:1fr}
+  body:not(:has(.audit-page)) .cap-card,body:not(:has(.audit-page)) .cap-card:nth-child(1),body:not(:has(.audit-page)) .cap-card:nth-child(5){grid-column:1/-1;min-height:220px}
+  body:not(:has(.audit-page)) .audit-panel{padding:34px 24px;box-shadow:8px 8px 0 #111}
+  body:not(:has(.audit-page)) .system-card{box-shadow:8px 8px 0 var(--v2-acid)}
+  .v2-scroll-label{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){.v2-cursor,.v2-cursor-ring,.v2-scroll-label{display:none!important}}
