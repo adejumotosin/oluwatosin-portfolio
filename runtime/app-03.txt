@@ -1,0 +1,72 @@
+, stagger: .12, ease: 'power4.out', delay: .1 });
+        gsap.from('.hero-lead,.hero-actions', { opacity: 0, y: 24, duration: .8, stagger: .12, delay: .55, ease: 'power3.out' });
+        gsap.to('.hero-orb.one', { y: -36, x: 28, scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: 1 } });
+        gsap.to('.hero-orb.two', { y: 42, x: -20, scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: 1 } });
+    }, { scope: ref });
+    return React.createElement("header", { id: "top", className: "hero", ref: ref },
+        React.createElement("div", { className: "hero-orb one" }),
+        React.createElement("div", { className: "hero-orb two" }),
+        React.createElement("div", { className: "hero-grid shell" },
+            React.createElement("div", null,
+                React.createElement("p", { className: "eyebrow hero-kicker" },
+                    React.createElement("span", null),
+                    " Lagos, Nigeria \u00B7 Available remotely"),
+                React.createElement("h1", { className: "hero-title" },
+                    React.createElement("span", { className: "mask" },
+                        React.createElement("span", { className: "line" }, "I write in")),
+                    React.createElement("span", { className: "mask accent-line" },
+                        React.createElement("span", { className: "line" }, "your voice."))),
+                React.createElement("p", { className: "hero-lead" }, "Social media strategy, content systems and creative execution for brands that need a clearer position\u2014and a voice people recognise."),
+                React.createElement("div", { className: "hero-actions" },
+                    React.createElement(MagneticLink, { href: "#work", className: "button primary" },
+                        "Explore selected work ",
+                        React.createElement("span", null, "\u2198")),
+                    React.createElement(MagneticLink, { href: "/social-audit", className: "text-link" },
+                        "Run a free account audit ",
+                        React.createElement("span", null, "\u2192")))),
+            React.createElement(SpotlightCard, { className: "hero-proof" },
+                React.createElement("div", { className: "proof-label" }, "Selected impact"),
+                React.createElement("div", { className: "proof-stat" },
+                    React.createElement("strong", null,
+                        React.createElement(CountUp, { value: "49", suffix: "K+" })),
+                    React.createElement("span", null, "YouTube views")),
+                React.createElement("div", { className: "proof-stat" },
+                    React.createElement("strong", null,
+                        React.createElement(CountUp, { value: "1.2", suffix: "K+" })),
+                    React.createElement("span", null, "TikTok followers in 1 month")),
+                React.createElement("div", { className: "proof-stat" },
+                    React.createElement("strong", null,
+                        React.createElement(CountUp, { value: "30", suffix: "+" })),
+                    React.createElement("span", null, "Monthly enquiries generated")),
+                React.createElement("div", { className: "proof-foot" }, "Strategy \u2192 execution \u2192 measurable response"))));
+}
+function ImpactStrip() {
+    return React.createElement("section", { className: "impact-strip" },
+        React.createElement("div", { className: "impact-track" }, ['Content strategy', 'Brand voice', 'Social media management', 'Audience research', 'Campaign planning', 'Growth analytics', 'Content strategy', 'Brand voice', 'Social media management', 'Audience research'].map((x, i) => React.createElement("span", { key: i },
+            x,
+            React.createElement("b", null, "\u2726")))));
+}
+function CaseStudy({ study, index }) {
+    const [open, setOpen] = useState(index === 0);
+    const body = useRef(null);
+    useEffect(() => {
+        if (!body.current)
+            return;
+        gsap.fromTo(body.current, { height: 0, opacity: 0 }, { height: open ? 'auto' : 0, opacity: open ? 1 : 0, duration: .55, ease: 'power3.inOut' });
+    }, [open]);
+    return React.createElement("article", { className: `case-card ${open ? 'open' : ''}` },
+        React.createElement("button", { className: "case-summary", onClick: () => setOpen(!open), "aria-expanded": open },
+            React.createElement("span", { className: "case-number" }, study.number),
+            React.createElement("div", null,
+                React.createElement("span", { className: "case-sector" }, study.sector),
+                React.createElement("h3", null, study.title),
+                React.createElement("p", null, study.statement)),
+            React.createElement("div", { className: "case-result" },
+                React.createElement("strong", null, study.metrics[0][0]),
+                React.createElement("small", null, study.metrics[0][1]),
+                React.createElement("span", { className: "plus" }, "+"))),
+        React.createElement("div", { className: "case-body", ref: body, style: { overflow: 'hidden' } },
+            React.createElement("div", { className: "case-inner" },
+                study.image && React.createElement("div", { className: "case-image" },
+                    React.createElement("img", { src: study.image, alt: `${study.title} account result screenshot` })),
+                React.createElement("div", { classN
