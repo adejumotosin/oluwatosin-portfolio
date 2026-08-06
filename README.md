@@ -31,12 +31,10 @@ The entry point loads React/ReactDOM from UNPKG and GSAP/ScrollTrigger from jsDe
 
 ## Deployment
 
-The existing live Vercel project is `oluwatosin-portfolio`.
-
-GitHub Actions is configured to deploy pushes to `main` to production and pull requests to preview deployments using the repository secret `VERCEL_TOKEN`.
+The existing live Vercel project is `oluwatosin-portfolio` and is connected directly to this GitHub repository through Vercel's native Git integration.
 
 `vercel.json` preserves static assets normally and rewrites only `/social-audit` to `index.html`.
 
 ## Git workflow
 
-`main` is the production branch. Changes merged or pushed to `main` trigger the Vercel production workflow, while pull requests generate preview deployments.
+`main` is the production branch. Pushes to `main` trigger Vercel production deployments automatically, while pull requests and non-production branches can generate preview deployments through Vercel's native Git integration.
